@@ -7,6 +7,7 @@ export const changeState = (prop) => {
   };
 };
 
+
 export const storeState = () => {
   const charStates = {};
   return (charId) => {
@@ -21,5 +22,33 @@ export const storeState = () => {
     };
   };
 }
-const stateControl = storeState();
-const char1 = stateControl("Bubba");
+export const stateControl = storeState();
+export const char1 = stateControl("Bubba");
+//char1(); //return stats as is
+export const food = changeState("health")(1); //add 1 to health function
+export const newState = char1(food); //char1 eats, gain 1 health. 
+
+export const canEat = (character) => ({
+    eat: (stuff) => {
+        return `${character.name} eats ${stuff}`
+    }
+});
+export const canSleep = (character) => ({
+    sleep: (time) => {
+        return `${character.name} sleeps ${time} hours.`
+    }
+});
+
+export const canHike = (character) => ({
+    hike: (mileage) => {
+        return `${character.name} hikes ${mileage} miles.`
+    }
+});
+
+export const eatingSleepingHikingPerson = (name) => {
+  let char = {
+    name
+  }
+
+  return { ...char, ...canEat(char), ...canSleep(char), ...canHike(char) };
+}

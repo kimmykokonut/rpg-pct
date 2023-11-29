@@ -1,10 +1,9 @@
-import { changeState, storeState } from '../src/js/rpg.js';
+import { changeState, storeState, eatingSleepingHikingPerson } from '../src/js/rpg.js';
 
 describe('changeState', () => {
 
   test('should input a property and update the value', () => {
     const food = changeState("health")(1);
-    console.log(food);
     const sleep = changeState("stamina")(1);
     let char1 = { health: 0, stamina: 5 };
     expect(food(char1)).toEqual({health: 1, stamina:5});
@@ -28,5 +27,20 @@ describe('storeState', () => {
     expect(char1()).toEqual({ health: 1 });
   });
 })
-
-
+describe('eatingSleepingHikingPerson', () => {
+  test('should add properties to persons object', () => {
+    const Cheryl = eatingSleepingHikingPerson("cheryl");
+    expect(Cheryl).toEqual(Cheryl, {
+      name: 'cheryl',
+      eat: function(stuff) {
+        return `${character.name} eats ${stuff}`
+      },
+      sleep: function(time) {
+        return `${character.name} sleeps ${time} hours.`
+      },
+      hike: function(mileage) {
+        return `${character.name} hikes ${mileage} miles.`
+      }
+    });
+  });
+  })
