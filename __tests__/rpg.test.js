@@ -1,11 +1,12 @@
-import Triangle from '../src/js/triangle.js';
+import { changeState } from '../src/js/rpg.js';
 
-describe('Triangle', () => {
+describe('changeState', () => {
 
-  test('should correctly create a triangle object with three lengths', () => {
-    const triangle = new Triangle(2, 4, 5);
-    expect(triangle.side1).toEqual(2);
-    expect(triangle.side2).toEqual(4);
-    expect(triangle.side3).toEqual(5);
+  test('should input a property and update the value', () => {
+    const food = changeState("health")(1);
+    console.log(food);
+    const sleep = changeState("stamina")(1);
+    let char1 = { health: 0, stamina: 5 };
+    expect(food(char1)).toEqual({health: 1, stamina:5});
   });
 });
