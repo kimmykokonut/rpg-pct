@@ -1,4 +1,4 @@
-import { changeState, storeState, eatingSleepingHikingPerson } from '../src/js/rpg.js';
+import { changeState, storeState, eatingSleepingHikingPerson, canEat, canSleep, canHike } from '../src/js/rpg.js';
 
 describe('changeState', () => {
 
@@ -28,9 +28,24 @@ describe('storeState', () => {
   });
 })
 describe('canEat', ()=> {
-  test('should add eating property to character object')
-  const Jim = canEat
+  test('should add eating property to character object', () =>{
+  const Jim = canEat('Jim');
+  expect(Jim).toEqual(Jim, {
+    name: 'Jim',
+    eat: function(stuff) {
+      return`${character.name} eats ${stuff}`
+    }
+  });
+    expect(Jim.eat("blueberries")).toEqual("undefined eats blueberries"); //name establised in eatsleephike()
+  });
 })
+describe ('canSleep', ()=> {
+  test('should return sleep in hours', () => {
+    const Jim = canSleep('Jim');
+    expect(Jim.sleep(5)).toEqual("undefined sleeps 5 hours."); //name establised in eatsleephike()
+  });
+});
+
 describe('eatingSleepingHikingPerson', () => {
   test('should add properties to persons object', () => {
     const Cheryl = eatingSleepingHikingPerson("cheryl");
