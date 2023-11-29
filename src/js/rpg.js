@@ -7,3 +7,19 @@ export const changeState = (prop) => {
   };
 };
 
+export const storeState = () => {
+  const charStates = {};
+  return (charId) => {
+    if (!charStates[charId]) {
+      charStates[charId] = {};
+    }
+    let currentState = charStates[charId];
+    return (stateChangeFunction = state => state) => {
+      const newState = stateChangeFunction(currentState);
+      currentState = { ...newState };
+      return newState;
+    };
+  };
+}
+const stateControl = storeState();
+const char1 = stateControl("Bubba");
