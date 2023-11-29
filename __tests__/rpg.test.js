@@ -27,6 +27,10 @@ describe('storeState', () => {
     expect(char1()).toEqual({ health: 1 });
   });
 })
+describe('canEat', ()=> {
+  test('should add eating property to character object')
+  const Jim = canEat
+})
 describe('eatingSleepingHikingPerson', () => {
   test('should add properties to persons object', () => {
     const Cheryl = eatingSleepingHikingPerson("cheryl");
@@ -42,5 +46,6 @@ describe('eatingSleepingHikingPerson', () => {
         return `${character.name} hikes ${mileage} miles.`
       }
     });
+
   });
   })
