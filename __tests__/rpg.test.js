@@ -45,6 +45,12 @@ describe ('canSleep', ()=> {
     expect(Jim.sleep(5)).toEqual("undefined sleeps 5 hours."); //name establised in eatsleephike()
   });
 });
+describe('canHike', () => {
+  test('should return hike in mileage', () => {
+    const Jim = canHike('Jim');
+    expect(Jim.hike(5)).toEqual("undefined hikes 5 miles.")
+  });
+})
 
 describe('eatingSleepingHikingPerson', () => {
   test('should add properties to persons object', () => {

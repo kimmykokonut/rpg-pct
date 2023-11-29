@@ -6,8 +6,6 @@ export const changeState = (prop) => {
     });
   };
 };
-
-
 export const storeState = () => {
   const charStates = {};
   return (charId) => {
@@ -52,3 +50,13 @@ export const eatingSleepingHikingPerson = (name) => {
 
   return { ...char, ...canEat(char), ...canSleep(char), ...canHike(char) };
 }
+//1. Initailize char w stats
+//2. give f() eat/sleep/hike
+//3. action, update state, return new state
+const Matt = eatingSleepingHikingPerson("Matt");
+const MattState = stateControl(Matt); //shows state
+
+Matt(food); //matt gets 1 health
+MattState;
+//export const food = changeState("health")(1); //add 1 to health function
+//export const newState = char1(food); //char1 eats, gain 1 health. 
