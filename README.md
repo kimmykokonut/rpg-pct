@@ -1,18 +1,19 @@
-# Template Repository
+# RPG - to learn fucntional programming
 
-#### updated to include ESLint for functional programming
-with __tests__, coverage, jest, .env, .gitignore, lint, cleanwebpack, htmlwebpack 
-
-#### By Kim Robinson
+#### By Kim Robinson & Monica Barboza
 
 ## Technologies Used
 
-* _List all_
-* _the major technologies_
-* _you used in your project_
-* _here_
+* JavaScript
+* CSS
+* Html
+* Jest
+* webpack
+* npm
+* eslint
 
 ## Description
+tbd
 
 ## Setup/Installation Requirements
 
