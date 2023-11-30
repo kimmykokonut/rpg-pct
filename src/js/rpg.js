@@ -54,7 +54,7 @@ export const weekendWarrior = (name) => {
     stamina: 8,
     health: 10,
   };
-  return storeState(Object.assign(state, eatingSleepingHikingPerson(state)));
+  return Object.assign(state, eatingSleepingHikingPerson(state));
 };
 
 
