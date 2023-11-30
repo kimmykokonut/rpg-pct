@@ -1,9 +1,46 @@
 <!DOCTYPE html>
 <html lang="en-US">
+
 <head>
-      <title>RPG-PCT Adventure</title>
+	<title>RPG-PCT-Adventure</title>
 </head>
+
 <body>
-  
+	<div class="container">
+		<div id="intro">
+			<h1>Choose your own adventure...</h1>
+			<form id="nameInput">
+				<label for="name">Enter your name: </label>
+				<input type="text" id="name" name="name" required>
+				<br>
+				<label for="hikerType">Select player: </label>
+				<select name="hikerType" id="hikerType">
+					<option value="weekendWarrior" select>Weekend Warrior</option>
+					<option value="expHiker">Experienced Hiker</option>
+				</select>
+				<br>
+				<button id="hike" type="submit">Hike on!</button>
+			</form>
+		</div>
+		<div id="setup" class="hidden">
+			<form>
+				<br>
+				<label for="items">Select items: </label>
+				<select name="items" id="items">
+					<option value="sunBlock">Sun Block</option>
+					<option value="Map">Map</option>
+					<option value="charger">Portable Charger</option>
+				</select>
+				<br>
+				<button type="submit">Put in my backpack</button>
+			</form>
+		</div>
+		<div class="gamePlay">
+		</div>
+		<div id="displayStats">
+			<p id="stats"></p>
+		</div>
+	</div>
 </body>
+
 </html>

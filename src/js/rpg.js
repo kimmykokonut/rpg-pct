@@ -1,4 +1,4 @@
-const changeState = (prop) => {
+export const changeState = (prop) => {
   return (value) => {
     return (state) => ({
       ...state,
@@ -6,86 +6,81 @@ const changeState = (prop) => {
     });
   };
 };
-const storeState = (initialState = {}) => {
-  // const charStates = {};
-  // return (charId) => {
-  //   if (!charStates[charId]) {
-  //     charStates[charId] = {};
-  //   }
-    let currentState = initialState;
-    return (stateChangeFunction = state => state) => {
-      const newState = stateChangeFunction(currentState);
-      currentState = { ...newState };
-      return newState;
-    }
-  }
+export const storeState = (initialState = {}) => {
+  let currentState = initialState;
+  return (stateChangeFunction = state => state) => {
+    const newState = stateChangeFunction(currentState);
+    currentState = { ...newState };
+    return newState;
+  };
+};
 //}
-const stateControl = storeState();
+export const stateControl = storeState();
 
-const canEat = (character) => ({
+export const canEat = (character) => ({
   eat: (stuff) => {
-    return `${character.name} eats ${stuff}`
+    return `${character.name} eats ${stuff}`;
   }
 });
-const canSleep = (character) => ({
+export const canSleep = (character) => ({
   sleep: (time) => {
-    return `${character.name} sleeps ${time} hours.`
+    return `${character.name} sleeps ${time} hours.`;
   }
 });
 
-const canHike = (character) => ({
+export const canHike = (character) => ({
   hike: (mileage) => {
-    return `${character.name} hikes ${mileage} miles.`
+    return `${character.name} hikes ${mileage} miles.`;
   }
 });
 
-const eatingSleepingHikingPerson = (state) => {
+export const eatingSleepingHikingPerson = (state) => {
   return { ...state, ...canEat(state), ...canSleep(state), ...canHike(state) };
-}
+};
 
-const experiencedHiker = (name) => {
+export const experiencedHiker = (name) => {
   let state = {
     name,
     wisdom: 8,
     stamina: 4,
     health: 10,
-  }
-  return Object.assign(state, eatingSleepingHikingPerson(state))
-}
-const weekendWarrior = (name) => {
+  };
+  return Object.assign(state, eatingSleepingHikingPerson(state));
+};
+export const weekendWarrior = (name) => {
   let state = {
     name,
     wisdom: 2,
     stamina: 8,
     health: 10,
   };
-  return storeState(Object.assign(state, eatingSleepingHikingPerson(state)))
-}
+  return storeState(Object.assign(state, eatingSleepingHikingPerson(state)));
+};
 
 
-let kim = weekendWarrior('Kim') //works to create char w set props. now a function
-console.log(kim()); //call to get current stats
+//let kim = weekendWarrior('Kim') //works to create char w set props. now a function
+//console.log(kim()); //call to get current stats
 
 //console.log(stateControl.toString());
 
 //health
-const apple = changeState("health")(1);
-const bananaSlug = changeState("health")(-3);
-console.log(kim(bananaSlug));
-const squirrel = changeState("health")(2)
-const kimSlug = kim(bananaSlug);
-console.log(kimSlug);
+export const apple = changeState("health")(1);
+export const bananaSlug = changeState("health")(-3);
+//console.log(kim(bananaSlug));
+export const squirrel = changeState("health")(2);
+//export const kimSlug = kim(bananaSlug);
+//console.log(kimSlug);
 // stamina
-const obstacle = changeState("stamina")(-3);
-const rest = changeState("stamina")(4);
-const fullSun = changeState("stamina")(-2);
-const shade = changeState("stamina")(1);
+export const obstacle = changeState("stamina")(-3);
+export const rest = changeState("stamina")(4);
+export const fullSun = changeState("stamina")(-2);
+export const shade = changeState("stamina")(1);
 //wisdom
-const poisonIvy = changeState("widsom")(2);
-const map = changeState("wisdom")(4);
-const sunblock = changeState("wisdom")(2);
-const portableCharge =changeState("wisdom")(-3);
+export const poisonIvy = changeState("widsom")(2);
+export const map = changeState("wisdom")(4);
+export const sunblock = changeState("wisdom")(2);
+export const portableCharge = changeState("wisdom")(-3);
 //const 
-storeState(apple)
+//storeState(apple)
 //const kimEat = apple(kim); 
 //console.log(kimEat); //displays updated stats

@@ -23,7 +23,7 @@ module.exports = {
       verbose: true 
     }),
     new HtmlWebpackPlugin({
-      title: 'Template Repo',
+      title: 'RPG-PCT Adventure',
       template: './src/index.html',
       inject: 'body'
     })
