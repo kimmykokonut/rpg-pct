@@ -1,62 +1,91 @@
-export const changeState = (prop) => {
+const changeState = (prop) => {
   return (value) => {
     return (state) => ({
       ...state,
-      [prop]: (state[prop] || 0) + value 
+      [prop]: (state[prop] || 0) + value
     });
   };
 };
-export const storeState = () => {
-  const charStates = {};
-  return (charId) => {
-    if (!charStates[charId]) {
-      charStates[charId] = {};
-    }
-    let currentState = charStates[charId];
+const storeState = (initialState = {}) => {
+  // const charStates = {};
+  // return (charId) => {
+  //   if (!charStates[charId]) {
+  //     charStates[charId] = {};
+  //   }
+    let currentState = initialState;
     return (stateChangeFunction = state => state) => {
       const newState = stateChangeFunction(currentState);
       currentState = { ...newState };
       return newState;
-    };
-  };
-}
-export const stateControl = storeState();
-export const char1 = stateControl("Bubba");
-//char1(); //return stats as is
-export const food = changeState("health")(1); //add 1 to health function
-export const newState = char1(food); //char1 eats, gain 1 health. 
-
-export const canEat = (character) => ({
-    eat: (stuff) => {
-        return `${character.name} eats ${stuff}`
     }
-});
-export const canSleep = (character) => ({
-    sleep: (time) => {
-        return `${character.name} sleeps ${time} hours.`
-    }
-});
-
-export const canHike = (character) => ({
-    hike: (mileage) => {
-        return `${character.name} hikes ${mileage} miles.`
-    }
-});
-
-export const eatingSleepingHikingPerson = (name) => {
-  let char = {
-    name
   }
+//}
+const stateControl = storeState();
 
-  return { ...char, ...canEat(char), ...canSleep(char), ...canHike(char) };
+const canEat = (character) => ({
+  eat: (stuff) => {
+    return `${character.name} eats ${stuff}`
+  }
+});
+const canSleep = (character) => ({
+  sleep: (time) => {
+    return `${character.name} sleeps ${time} hours.`
+  }
+});
+
+const canHike = (character) => ({
+  hike: (mileage) => {
+    return `${character.name} hikes ${mileage} miles.`
+  }
+});
+
+const eatingSleepingHikingPerson = (state) => {
+  return { ...state, ...canEat(state), ...canSleep(state), ...canHike(state) };
 }
-//1. Initailize char w stats
-//2. give f() eat/sleep/hike
-//3. action, update state, return new state
-const Matt = eatingSleepingHikingPerson("Matt");
-const MattState = stateControl(Matt); //shows state
 
-Matt(food); //matt gets 1 health
-MattState;
-//export const food = changeState("health")(1); //add 1 to health function
-//export const newState = char1(food); //char1 eats, gain 1 health. 
+const experiencedHiker = (name) => {
+  let state = {
+    name,
+    wisdom: 8,
+    stamina: 4,
+    health: 10,
+  }
+  return Object.assign(state, eatingSleepingHikingPerson(state))
+}
+const weekendWarrior = (name) => {
+  let state = {
+    name,
+    wisdom: 2,
+    stamina: 8,
+    health: 10,
+  };
+  return storeState(Object.assign(state, eatingSleepingHikingPerson(state)))
+}
+
+
+let kim = weekendWarrior('Kim') //works to create char w set props. now a function
+console.log(kim()); //call to get current stats
+
+//console.log(stateControl.toString());
+
+//health
+const apple = changeState("health")(1);
+const bananaSlug = changeState("health")(-3);
+console.log(kim(bananaSlug));
+const squirrel = changeState("health")(2)
+const kimSlug = kim(bananaSlug);
+console.log(kimSlug);
+// stamina
+const obstacle = changeState("stamina")(-3);
+const rest = changeState("stamina")(4);
+const fullSun = changeState("stamina")(-2);
+const shade = changeState("stamina")(1);
+//wisdom
+const poisonIvy = changeState("widsom")(2);
+const map = changeState("wisdom")(4);
+const sunblock = changeState("wisdom")(2);
+const portableCharge =changeState("wisdom")(-3);
+//const 
+storeState(apple)
+//const kimEat = apple(kim); 
+//console.log(kimEat); //displays updated stats
